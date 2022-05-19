@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 import java.time.Duration;
 
@@ -63,4 +65,13 @@ public class BankAccountTest {
 		BankAccount bankAccount = new BankAccount(400, 0);
 		assertTimeout(Duration.ofNanos(1), () -> bankAccount.deposit(200));
 	}
+	
+	@Test
+	@DisplayName("Test account activation after creation")
+	public void testBankAccountActive( ) {
+		BankAccount bankAccount = new BankAccount(1200,0);
+		assumeTrue(bankAccount != null);
+		assumingThat(bankAccount != null, ()-> assertTrue(bankAccount.isActive()));
+	}
+	
 }
