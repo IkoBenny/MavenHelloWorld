@@ -10,12 +10,16 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 import java.time.Duration;
-
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BankAccountTest {
 	@Test
+	@Order(4)
 	@DisplayName("Test Successful withdraw 300$")
 	public void testWithdraw() {
 		BankAccount bankAccount = new BankAccount(500, -1000);
@@ -24,6 +28,7 @@ public class BankAccountTest {
 	}
 	
 	@Test
+	@Order(3)
 	@DisplayName("Test Successful deposit 500$")
 	public void testDeposit() {
 		BankAccount bankAccount = new BankAccount(400, 0);
@@ -31,6 +36,7 @@ public class BankAccountTest {
 	}
 	
 	@Test
+	@Order(2)
 	@DisplayName("Test if bank account is active after creation")
 	public void testIsActive() {
 		BankAccount bankAccount = new BankAccount(200, 0);
@@ -38,6 +44,7 @@ public class BankAccountTest {
 	}
 	
 	@Test
+	@Order(1)
 	@DisplayName("Test if account holder name is not null")
 	public void testGetHolderName() {
 		BankAccount bankAccount = new BankAccount(20,20);
